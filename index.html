@@ -37,7 +37,12 @@
             z-index: 1000; border-bottom: 1px solid #222;
         }
         
-        .logo { font-size: 1.2rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
+        /* AGORA O LOGO É UM LINK CLICÁVEL */
+        .logo { 
+            font-size: 1.2rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; 
+            cursor: pointer;
+        }
+        .logo:hover { color: var(--accent); } /* Fica vermelho ao passar o mouse */
         
         .languages { display: flex; gap: 20px; }
         .languages a { font-size: 0.8rem; color: #888; font-weight: 600; }
@@ -68,7 +73,7 @@
             margin-top: 40px; padding: 15px 40px; 
             background: var(--primary); color: #000; font-weight: 700;
             text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;
-            border-radius: 50px; border: none; cursor: pointer;
+            border-radius: 50px; border: none; cursor: pointer; display: inline-block;
         }
         .cta-button:hover { background: var(--accent); color: white; transform: scale(1.05); }
 
@@ -125,7 +130,7 @@
 <body>
 
     <nav>
-        <div class="logo">ARCOS LAB</div>
+        <a href="index.html" class="logo">ARCOS LAB</a>
         <div class="menu-icon" onclick="toggleMenu()">☰</div>
         <div class="languages" id="menuLista">
             <a href="#" class="active">PT</a>
