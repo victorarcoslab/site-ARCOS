@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARCOS LAB | Edição de Vídeo</title>
+    <title>ARCOS LAB | Visual Art</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
 
     <style>
-        /* --- ESTILO GERAL --- */
+        /* --- GENERAL STYLES --- */
         :root {
             --primary: #ffffff;
-            --accent: #eb4034;
+            --accent: #eb4034; /* Arcos Red */
             --bg: #050505;
             --whatsapp: #25D366;
         }
@@ -30,143 +30,111 @@
         
         /* --- MENU --- */
         nav { 
-            display: flex; justify-content: space-between; align-items: center; 
-            padding: 20px 5%; 
+            display: flex; justify-content: center; 
+            padding: 30px 5%; 
             position: fixed; width: 100%; top: 0; 
-            background: rgba(5,5,5,0.95); backdrop-filter: blur(10px);
-            z-index: 1000; border-bottom: 1px solid #222;
+            background: transparent; 
+            backdrop-filter: blur(5px);
+            z-index: 1000;
         }
         
-        /* AGORA O LOGO É UM LINK CLICÁVEL */
         .logo { 
-            font-size: 1.2rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; 
-            cursor: pointer;
+            font-size: 1rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; 
+            cursor: pointer; opacity: 0.8;
         }
-        .logo:hover { color: var(--accent); } /* Fica vermelho ao passar o mouse */
-        
-        .languages { display: flex; gap: 20px; }
-        .languages a { font-size: 0.8rem; color: #888; font-weight: 600; }
-        .languages a:hover { color: var(--primary); }
-        .languages a.active { color: var(--primary); border-bottom: 2px solid var(--accent); }
+        .logo:hover { opacity: 1; letter-spacing: 5px; }
 
-        .menu-icon { display: none; font-size: 1.5rem; cursor: pointer; }
-
-        /* --- CAPA (HERO) --- */
+        /* --- HERO SECTION --- */
         .hero { 
             height: 100vh;
             display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; 
             padding: 20px; 
-            background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+            background: radial-gradient(circle at center, #111 0%, #000 100%);
         }
         
         .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
         h1 { 
-            font-size: clamp(3rem, 7vw, 7rem); 
-            margin: 0; text-transform: uppercase; letter-spacing: 5px; line-height: 1.1; font-weight: 900;
+            font-size: clamp(3rem, 9vw, 9rem); 
+            margin: 0; text-transform: uppercase; letter-spacing: -2px; line-height: 0.9; font-weight: 900;
+            background: -webkit-linear-gradient(#fff, #666); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
         
-        h2 { font-size: clamp(1rem, 2vw, 1.5rem); font-weight: 300; color: #aaa; margin-top: 20px; letter-spacing: 2px; max-width: 700px; }
-        
-        .cta-button { 
-            margin-top: 40px; padding: 15px 40px; 
-            background: var(--primary); color: #000; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;
-            border-radius: 50px; border: none; cursor: pointer; display: inline-block;
+        /* --- PORTFOLIO (VERTICAL) --- */
+        .portfolio { padding: 50px 5% 100px; max-width: 1400px; margin: 0 auto; }
+        .section-label { 
+            font-size: 0.7rem; color: #444; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; 
+            margin-bottom: 80px; display: block; text-align: center;
         }
-        .cta-button:hover { background: var(--accent); color: white; transform: scale(1.05); }
-
-        /* --- PORTFÓLIO --- */
-        .portfolio { padding: 100px 5%; max-width: 1400px; margin: 0 auto; }
-        .section-label { font-size: 0.8rem; color: var(--accent); text-transform: uppercase; letter-spacing: 3px; font-weight: 700; margin-bottom: 40px; display: block; border-bottom: 1px solid #222; padding-bottom: 10px; }
 
         .video-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
-            gap: 50px; 
+            grid-template-columns: 1fr; 
+            justify-items: center; 
         }
         
-        .video-item { transition: 0.5s; }
-        .video-item:hover { transform: translateY(-10px); }
+        .video-item { 
+            width: 100%;
+            max-width: 400px; 
+            transition: 0.5s; 
+        }
+        .video-item:hover { transform: scale(1.02); }
 
         .video-container {
-            position: relative; width: 100%; padding-bottom: 56.25%; background: #111; border-radius: 12px; overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative; 
+            width: 100%; 
+            padding-bottom: 177.77%; /* 9:16 Vertical */
+            background: #111; 
+            border-radius: 20px; 
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
         }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
         
-        .video-info { margin-top: 20px; }
-        .client-name { font-weight: 700; font-size: 1.2rem; display: block; color: white; margin-bottom: 5px;}
-        .project-type { color: #888; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+        .video-info { margin-top: 25px; text-align: center; }
+        .client-name { font-weight: 700; font-size: 1rem; display: block; color: white; margin-bottom: 5px; letter-spacing: 1px;}
+        .project-type { color: #555; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; }
 
-        /* --- WHATSAPP FLUTUANTE --- */
+        /* --- WHATSAPP FLOAT --- */
         .whatsapp-float {
-            position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px;
-            background-color: var(--whatsapp); color: #FFF; border-radius: 50px;
-            text-align: center; box-shadow: 2px 2px 10px #000;
+            position: fixed; width: 50px; height: 50px; bottom: 30px; right: 30px;
+            background-color: #222; color: #FFF; border-radius: 50px; border: 1px solid #333;
+            text-align: center; box-shadow: 0 0 20px rgba(0,0,0,0.8);
             z-index: 1000; display: flex; align-items: center; justify-content: center;
             transition: 0.3s;
         }
-        .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 0 20px var(--whatsapp); }
-        .whatsapp-icon { width: 35px; height: 35px; fill: white; }
+        .whatsapp-float:hover { background-color: var(--whatsapp); border-color: var(--whatsapp); transform: scale(1.1); }
+        .whatsapp-icon { width: 25px; height: 25px; fill: white; }
 
-        /* --- RODAPÉ --- */
-        footer { text-align: center; padding: 80px 20px; border-top: 1px solid #111; color: #444; font-size: 0.8rem; margin-top: 50px; }
-        footer a { color: #666; }
-
-        @media (max-width: 768px) {
-            .video-grid { grid-template-columns: 1fr; }
-            .menu-icon { display: block; }
-            .languages { 
-                display: none; position: absolute; top: 70px; right: 5%; 
-                background: #111; padding: 20px; border-radius: 10px; border: 1px solid #333;
-                flex-direction: column; 
-            }
-            .languages.active-menu { display: flex; }
-        }
+        /* --- FOOTER --- */
+        footer { text-align: center; padding: 100px 20px; border-top: 1px solid #111; color: #333; font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; margin-top: 50px; }
+        footer a { color: #555; }
+        footer a:hover { color: #fff; }
     </style>
 </head>
 <body>
 
     <nav>
         <a href="index.html" class="logo">ARCOS LAB</a>
-        <div class="menu-icon" onclick="toggleMenu()">☰</div>
-        <div class="languages" id="menuLista">
-            <a href="#" class="active">PT</a>
-            <a href="#">EN</a>
-            <a href="#">ES</a>
-        </div>
     </nav>
 
     <div class="hero">
         <h1 class="reveal">ARCOS LAB</h1>
-        <h2 class="reveal">Edição de vídeo high-end para criadores e marcas globais.</h2>
-        <a href="#portfolio" class="cta-button reveal">Ver Portfólio</a>
     </div>
 
     <div class="portfolio" id="portfolio">
-        <span class="section-label reveal">Em Breve</span>
+        <span class="section-label reveal">Selected Works</span>
         
         <div class="video-grid">
             
             <div class="video-item reveal">
                 <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/lxalGqmvTVI?controls=0&rel=0" loading="lazy" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/eYI5FP4VTAs?controls=1&rel=0" loading="lazy" allowfullscreen></iframe>
                 </div>
                 <div class="video-info">
-                    <span class="client-name">Projeto em Andamento</span>
-                    <span class="project-type">Coming Soon</span>
-                </div>
-            </div>
-
-            <div class="video-item reveal">
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/lxalGqmvTVI?controls=0&rel=0" loading="lazy" allowfullscreen></iframe>
-                </div>
-                <div class="video-info">
-                    <span class="client-name">Projeto em Andamento</span>
-                    <span class="project-type">Coming Soon</span>
+                    <span class="client-name">Street Interview</span>
+                    <span class="project-type">Shorts / Reels</span>
                 </div>
             </div>
 
@@ -180,12 +148,11 @@
     </a>
 
     <footer>
-        <p>São Paulo, Brasil • Worldwide</p>
+        <p>São Paulo • Worldwide</p>
         <p><a href="mailto:contato@arcoslab.com">contato@arcoslab.com</a></p>
     </footer>
 
     <script>
-        function toggleMenu() { document.getElementById("menuLista").classList.toggle("active-menu"); }
         window.addEventListener('scroll', reveal);
         function reveal(){
             var reveals = document.querySelectorAll('.reveal');
