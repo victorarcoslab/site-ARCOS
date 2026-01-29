@@ -7,14 +7,14 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
 
     <style>
-        /* --- ESTÉTICA GERAL (DOJO MINIMALISTA) --- */
+        /* --- DESIGN SYSTEM --- */
         :root {
-            --bg: #fafafa; /* Branco Papel */
-            --ink: #111111; /* Preto Tinta */
-            --gray: #888888;
+            --bg: #ffffff;      /* Fundo Branco Puro */
+            --ink: #000000;     /* Preto Absoluto */
+            --gray: #666666;    /* Cinza para detalhes */
         }
 
         * { box-sizing: border-box; }
@@ -24,125 +24,144 @@
             background-color: var(--bg); 
             color: var(--ink); 
             font-family: 'Montserrat', sans-serif; 
-            overflow-x: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-height: 100vh;
         }
-        
-        a { text-decoration: none; transition: 0.3s; }
 
-        /* --- LOGO (IMAGEM) --- */
+        /* --- CABEÇALHO (LOGO + TEXTOS) --- */
         header {
             width: 100%;
             padding: 60px 20px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
-            opacity: 0; 
-            animation: inkFlow 1.5s forwards; /* Animação suave de entrada */
+            /* Animação de entrada */
+            animation: slideDown 0.8s ease-out forwards;
         }
 
+        /* 1. A IMAGEM DA LOGO */
         .logo-img {
-            max-width: 180px; /* Tamanho da logo */
-            width: 100%;
+            width: 120px;       /* Tamanho controlado */
             height: auto;
-            /* Mix-blend-mode ajuda a "fundir" o branco do jpg com o fundo do site */
+            margin-bottom: 20px; /* Espaço entre imagem e texto */
+            display: block;
+            /* Garante que a imagem se misture ao fundo se não for PNG transparente */
             mix-blend-mode: multiply; 
-            filter: contrast(1.1); /* Realça o preto do traço */
         }
 
-        /* --- VÍDEO (OLD SCHOOL STYLE) --- */
-        .portfolio { 
-            width: 100%; 
-            max-width: 1400px; 
-            padding: 0 5% 100px;
+        /* 2. TÍTULO: ARCOS LAB */
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;   /* Negrito Pesado */
+            letter-spacing: -1px;
+            margin: 0;
+            line-height: 1;
+            text-transform: uppercase;
+        }
+
+        /* 3. SUBTÍTULO: EDIÇÃO DE VÍDEO */
+        h2 {
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            font-weight: 500;
+            letter-spacing: 4px; /* Espaçamento chique */
+            margin-top: 10px;
+            color: var(--gray);
+            text-transform: uppercase;
+        }
+
+        /* --- ÁREA DO VÍDEO --- */
+        .portfolio {
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 20px 80px;
             display: flex;
             justify-content: center;
-            
-            opacity: 0; 
-            transform: translateY(20px); 
+            /* Animação de entrada */
+            opacity: 0;
             animation: fadeIn 1s 0.5s forwards;
         }
 
-        .video-item { 
+        .video-wrapper {
             width: 100%;
-            max-width: 400px; /* Largura controlada */
+            max-width: 400px; /* Largura de celular */
+            border-radius: 15px;
+            overflow: hidden;
+            background: #000;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15); /* Sombra elegante */
         }
 
         .video-container {
-            position: relative; 
-            width: 100%; 
-            padding-bottom: 177.77%; /* 9:16 Vertical */
-            background: #000; 
-            overflow: hidden;
-            /* Sombra suave e difusa, como tinta no papel */
-            box-shadow: 0 30px 60px rgba(0,0,0,0.15); 
+            position: relative;
+            padding-bottom: 177.77%; /* Proporção 9:16 Vertical */
+            height: 0;
         }
 
-        .video-container iframe { 
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; 
-        }
-        
-        .video-info { 
-            margin-top: 25px; 
-            text-align: center; 
-        }
-        
-        .project-type { 
-            font-size: 0.75rem; 
-            text-transform: uppercase; 
-            letter-spacing: 3px; /* Espaçamento elegante */
-            color: var(--ink);
-            font-weight: 600;
-            border-top: 1px solid #ddd;
-            padding-top: 15px;
-            display: inline-block;
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
         }
 
-        /* --- BOTÃO WHATSAPP (ESTILO ZEN - PRETO) --- */
-        .whatsapp-float {
-            position: fixed; width: 50px; height: 50px; bottom: 30px; right: 30px;
-            background-color: var(--ink); /* Botão Preto */
-            color: #FFF; 
-            border-radius: 50%; /* Redondo perfeito */
-            text-align: center; 
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            z-index: 1000; display: flex; align-items: center; justify-content: center;
-            transition: all 0.4s ease;
+        /* --- WHATSAPP --- */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--ink);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+            z-index: 100;
         }
-        
-        .whatsapp-float:hover { 
-            transform: scale(1.1) rotate(10deg); 
-            background-color: #333;
-        }
-        
+
+        .whatsapp-btn:hover { transform: scale(1.1); }
         .whatsapp-icon { width: 24px; height: 24px; fill: white; }
 
         /* --- FOOTER --- */
-        footer { 
-            width: 100%; text-align: center; padding: 50px 20px; 
-            color: var(--gray); font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; 
+        footer {
+            margin-top: auto;
+            padding: 40px;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--gray);
+            letter-spacing: 1px;
         }
-        footer a { color: var(--ink); font-weight: 600; }
-        footer a:hover { opacity: 0.6; }
+        
+        footer a { color: var(--ink); font-weight: 700; }
 
         /* ANIMAÇÕES */
-        @keyframes inkFlow { 
-            from { opacity: 0; transform: scale(0.95); } 
-            to { opacity: 1; transform: scale(1); } 
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        @keyframes fadeIn { 
-            to { opacity: 1; transform: translateY(0); } 
+        @keyframes fadeIn {
+            to { opacity: 1; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <img src="logo arcos.jpg" alt="ARCOS LAB Logo" class="logo-img">
+        <img src="logo arcos.jpg" alt="Logo Arcos Lab" class="logo-img">
+        
+        <h1>ARCOS LAB</h1>
+        
+        <h2>Edição de Vídeo</h2>
     </header>
 
     <div class="portfolio">
-        <div class="video-item">
+        <div class="video-wrapper">
             <div class="video-container">
                 <iframe 
                     src="https://www.youtube-nocookie.com/embed/eYI5FP4VTAs?controls=1&rel=0" 
@@ -151,13 +170,10 @@
                     allowfullscreen>
                 </iframe>
             </div>
-            <div class="video-info">
-                <span class="project-type">Visual Art / Edit</span>
-            </div>
         </div>
     </div>
 
-    <a href="https://wa.me/5511976347250" class="whatsapp-float" target="_blank" aria-label="Contato WhatsApp">
+    <a href="https://wa.me/5511976347250" class="whatsapp-btn" target="_blank" aria-label="WhatsApp">
         <svg class="whatsapp-icon" viewBox="0 0 24 24">
             <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487 2.982 1.288 2.982.858 3.526.801.544-.058 1.733-.708 1.98-1.392.248-.684.248-1.27.174-1.392z"/>
         </svg>
