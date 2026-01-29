@@ -12,9 +12,9 @@
     <style>
         /* --- DESIGN SYSTEM --- */
         :root {
-            --bg: #ffffff;      /* Fundo Branco Puro */
-            --ink: #000000;     /* Preto Absoluto */
-            --gray: #666666;    /* Cinza para detalhes */
+            --bg: #ffffff;      
+            --ink: #000000;     
+            --gray: #666666;    
         }
 
         * { box-sizing: border-box; }
@@ -30,7 +30,7 @@
             min-height: 100vh;
         }
 
-        /* --- CABEÇALHO (LOGO + TEXTOS) --- */
+        /* --- CABEÇALHO --- */
         header {
             width: 100%;
             padding: 60px 20px 40px;
@@ -38,125 +38,97 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            /* Animação de entrada */
             animation: slideDown 0.8s ease-out forwards;
         }
 
-        /* 1. A IMAGEM DA LOGO */
+        /* LOGO CORRIGIDA */
         .logo-img {
-            width: 120px;       /* Tamanho controlado */
+            width: 120px;       
             height: auto;
-            margin-bottom: 20px; /* Espaço entre imagem e texto */
+            margin-bottom: 20px; 
             display: block;
-            /* Garante que a imagem se misture ao fundo se não for PNG transparente */
             mix-blend-mode: multiply; 
         }
 
-        /* 2. TÍTULO: ARCOS LAB */
+        /* TÍTULO */
         h1 {
             font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 900;   /* Negrito Pesado */
+            font-weight: 900;   
             letter-spacing: -1px;
             margin: 0;
             line-height: 1;
             text-transform: uppercase;
         }
 
-        /* 3. SUBTÍTULO: EDIÇÃO DE VÍDEO */
+        /* SUBTÍTULO */
         h2 {
             font-size: clamp(0.8rem, 2vw, 1rem);
             font-weight: 500;
-            letter-spacing: 4px; /* Espaçamento chique */
+            letter-spacing: 4px; 
             margin-top: 10px;
             color: var(--gray);
             text-transform: uppercase;
         }
 
-        /* --- ÁREA DO VÍDEO --- */
+        /* --- VÍDEO --- */
         .portfolio {
             width: 100%;
             max-width: 1200px;
             padding: 0 20px 80px;
             display: flex;
             justify-content: center;
-            /* Animação de entrada */
             opacity: 0;
             animation: fadeIn 1s 0.5s forwards;
         }
 
         .video-wrapper {
             width: 100%;
-            max-width: 400px; /* Largura de celular */
+            max-width: 400px;
             border-radius: 15px;
             overflow: hidden;
             background: #000;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15); /* Sombra elegante */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15); 
         }
 
         .video-container {
             position: relative;
-            padding-bottom: 177.77%; /* Proporção 9:16 Vertical */
+            padding-bottom: 177.77%; 
             height: 0;
         }
 
         .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
         }
 
         /* --- WHATSAPP --- */
         .whatsapp-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: var(--ink);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px;
+            background: var(--ink); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             transition: transform 0.3s ease;
             z-index: 100;
         }
-
         .whatsapp-btn:hover { transform: scale(1.1); }
         .whatsapp-icon { width: 24px; height: 24px; fill: white; }
 
         /* --- FOOTER --- */
         footer {
-            margin-top: auto;
-            padding: 40px;
-            text-align: center;
-            font-size: 0.75rem;
-            color: var(--gray);
-            letter-spacing: 1px;
+            margin-top: auto; padding: 40px; text-align: center;
+            font-size: 0.75rem; color: var(--gray); letter-spacing: 1px;
         }
-        
         footer a { color: var(--ink); font-weight: 700; }
 
-        /* ANIMAÇÕES */
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { to { opacity: 1; } }
     </style>
 </head>
 <body>
 
     <header>
-        <img src="logo arcos.jpg" alt="Logo Arcos Lab" class="logo-img">
+        <img src="logo.jpg" alt="Logo Arcos Lab" class="logo-img">
         
         <h1>ARCOS LAB</h1>
-        
         <h2>Edição de Vídeo</h2>
     </header>
 
