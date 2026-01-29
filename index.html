@@ -1,102 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARCOS LAB | Visual Art</title>
+    <title>ARCOS LAB | Edição de Vídeo</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
 
     <style>
-        /* --- GENERAL STYLES --- */
+        /* --- ESTILO GERAL --- */
         :root {
-            --primary: #ffffff;
-            --accent: #eb4034; /* Arcos Red */
             --bg: #050505;
+            --text: #f0f0f0;
+            --accent: #eb4034;
             --whatsapp: #25D366;
         }
 
         * { box-sizing: border-box; }
 
         body { 
-            margin: 0; background-color: var(--bg); color: #f0f0f0; 
+            margin: 0; background-color: var(--bg); color: var(--text); 
             font-family: 'Montserrat', sans-serif; 
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         
         a { text-decoration: none; color: white; transition: 0.3s; }
-        
-        /* --- MENU --- */
-        nav { 
-            display: flex; justify-content: center; 
-            padding: 30px 5%; 
-            position: fixed; width: 100%; top: 0; 
-            background: transparent; 
-            backdrop-filter: blur(5px);
-            z-index: 1000;
-        }
-        
-        .logo { 
-            font-size: 1rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; 
-            cursor: pointer; opacity: 0.8;
-        }
-        .logo:hover { opacity: 1; letter-spacing: 5px; }
 
-        /* --- HERO SECTION --- */
-        .hero { 
-            height: 100vh;
-            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; 
-            padding: 20px; 
-            background: radial-gradient(circle at center, #111 0%, #000 100%);
+        /* --- CABEÇALHO / LOGO --- */
+        header {
+            width: 100%;
+            padding: 80px 20px 40px; /* Espaço do topo até o logo */
+            text-align: center;
+            /* Animação de entrada suave */
+            opacity: 0; transform: translateY(-20px); animation: fadeIn 1s forwards;
         }
-        
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
 
         h1 { 
-            font-size: clamp(3rem, 9vw, 9rem); 
-            margin: 0; text-transform: uppercase; letter-spacing: -2px; line-height: 0.9; font-weight: 900;
-            background: -webkit-linear-gradient(#fff, #666); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        
-        /* --- PORTFOLIO (VERTICAL) --- */
-        .portfolio { padding: 50px 5% 100px; max-width: 1400px; margin: 0 auto; }
-        .section-label { 
-            font-size: 0.7rem; color: #444; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; 
-            margin-bottom: 80px; display: block; text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700; /* Negrito */
+            font-style: italic; /* Itálico */
+            font-size: clamp(3rem, 10vw, 8rem); /* Responsivo */
+            margin: 0; 
+            letter-spacing: -2px; 
+            line-height: 1;
+            /* Gradiente sutil para dar textura premium */
+            background: -webkit-linear-gradient(#fff, #888); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent;
         }
 
-        .video-grid { 
-            display: grid; 
-            grid-template-columns: 1fr; 
-            justify-items: center; 
+        /* --- PORTFÓLIO (VÍDEO) --- */
+        .portfolio { 
+            width: 100%; 
+            max-width: 1400px; 
+            padding: 0 5% 100px; /* Zero no topo para colar no logo */
+            display: flex;
+            justify-content: center;
+            
+            /* Animação de entrada (com leve atraso) */
+            opacity: 0; transform: translateY(30px); animation: fadeIn 1s 0.3s forwards;
         }
-        
+
         .video-item { 
             width: 100%;
-            max-width: 400px; 
+            max-width: 450px; /* Largura ideal para vídeo vertical no PC */
             transition: 0.5s; 
         }
-        .video-item:hover { transform: scale(1.02); }
 
         .video-container {
             position: relative; 
             width: 100%; 
-            padding-bottom: 177.77%; /* 9:16 Vertical */
+            padding-bottom: 177.77%; /* Formato 9:16 (Vertical) */
             background: #111; 
             border-radius: 20px; 
             overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
         
-        .video-info { margin-top: 25px; text-align: center; }
-        .client-name { font-weight: 700; font-size: 1rem; display: block; color: white; margin-bottom: 5px; letter-spacing: 1px;}
-        .project-type { color: #555; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; }
+        .video-info { margin-top: 20px; text-align: center; opacity: 0.7; }
+        .client-name { font-weight: 700; font-size: 0.9rem; display: block; color: white; margin-bottom: 5px;}
+        .project-type { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; }
 
-        /* --- WHATSAPP FLOAT --- */
+        /* --- WHATSAPP FLUTUANTE --- */
         .whatsapp-float {
             position: fixed; width: 50px; height: 50px; bottom: 30px; right: 30px;
             background-color: #222; color: #FFF; border-radius: 50px; border: 1px solid #333;
@@ -107,38 +98,33 @@
         .whatsapp-float:hover { background-color: var(--whatsapp); border-color: var(--whatsapp); transform: scale(1.1); }
         .whatsapp-icon { width: 25px; height: 25px; fill: white; }
 
-        /* --- FOOTER --- */
-        footer { text-align: center; padding: 100px 20px; border-top: 1px solid #111; color: #333; font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; margin-top: 50px; }
+        /* --- RODAPÉ --- */
+        footer { width: 100%; text-align: center; padding: 50px 20px; border-top: 1px solid #111; color: #333; font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; }
         footer a { color: #555; }
         footer a:hover { color: #fff; }
+
+        @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+
     </style>
 </head>
 <body>
 
-    <nav>
-        <a href="index.html" class="logo">ARCOS LAB</a>
-    </nav>
+    <header>
+        <h1>arcoslab</h1>
+    </header>
 
-    <div class="hero">
-        <h1 class="reveal">ARCOS LAB</h1>
-    </div>
-
-    <div class="portfolio" id="portfolio">
-        <span class="section-label reveal">Selected Works</span>
+    <div class="portfolio">
         
-        <div class="video-grid">
-            
-            <div class="video-item reveal">
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/eYI5FP4VTAs?controls=1&rel=0" loading="lazy" allowfullscreen></iframe>
-                </div>
-                <div class="video-info">
-                    <span class="client-name">Street Interview</span>
-                    <span class="project-type">Shorts / Reels</span>
-                </div>
+        <div class="video-item">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/eYI5FP4VTAs?controls=1&rel=0" loading="lazy" allowfullscreen></iframe>
             </div>
-
+            <div class="video-info">
+                <span class="client-name">Entrevista de Rua</span>
+                <span class="project-type">Shorts / Reels</span>
+            </div>
         </div>
+
     </div>
 
     <a href="https://wa.me/5511976347250" class="whatsapp-float" target="_blank">
@@ -148,21 +134,8 @@
     </a>
 
     <footer>
-        <p>São Paulo • Worldwide</p>
         <p><a href="mailto:contato@arcoslab.com">contato@arcoslab.com</a></p>
     </footer>
 
-    <script>
-        window.addEventListener('scroll', reveal);
-        function reveal(){
-            var reveals = document.querySelectorAll('.reveal');
-            for(var i = 0; i < reveals.length; i++){
-                var windowheight = window.innerHeight;
-                var revealtop = reveals[i].getBoundingClientRect().top;
-                if(revealtop < windowheight - 150){ reveals[i].classList.add('active'); }
-            }
-        }
-        reveal();
-    </script>
 </body>
 </html>
