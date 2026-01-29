@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARCOS LAB</title>
+    <title>ARCOS LAB | Video Editing</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,10 +30,10 @@
             min-height: 100vh;
         }
 
-        /* --- CABEÇALHO --- */
+        /* --- HEADER --- */
         header {
             width: 100%;
-            padding: 60px 20px 40px;
+            padding: 60px 20px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -50,7 +50,7 @@
             mix-blend-mode: multiply; 
         }
 
-        /* TÍTULO */
+        /* TITLE */
         h1 {
             font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 900;   
@@ -60,7 +60,7 @@
             text-transform: uppercase;
         }
 
-        /* SUBTÍTULO */
+        /* SUBTITLE */
         h2 {
             font-size: clamp(0.8rem, 2vw, 1rem);
             font-weight: 500;
@@ -70,34 +70,28 @@
             text-transform: uppercase;
         }
 
-        /* --- VÍDEO --- */
-        .portfolio {
-            width: 100%;
-            max-width: 1200px;
-            padding: 0 20px 80px;
+        /* --- CONSTRUCTION MESSAGE --- */
+        .construction-area {
+            flex: 1; /* Pushes footer down */
             display: flex;
+            align-items: center;
             justify-content: center;
+            width: 100%;
+            padding: 40px 20px;
             opacity: 0;
             animation: fadeIn 1s 0.5s forwards;
         }
 
-        .video-wrapper {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 15px;
-            overflow: hidden;
-            background: #000;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15); 
-        }
-
-        .video-container {
-            position: relative;
-            padding-bottom: 177.77%; 
-            height: 0;
-        }
-
-        .video-container iframe {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
+        .huge-text {
+            font-size: clamp(2.5rem, 8vw, 6rem); /* HUGE size */
+            font-weight: 900;
+            text-align: center;
+            line-height: 1;
+            color: #e0e0e0; /* Very light gray for aesthetic background feel */
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            /* Optional: Change color to var(--ink) if you want it black and bold */
+            color: var(--ink); 
         }
 
         /* --- WHATSAPP --- */
@@ -114,7 +108,7 @@
 
         /* --- FOOTER --- */
         footer {
-            margin-top: auto; padding: 40px; text-align: center;
+            padding: 40px; text-align: center;
             font-size: 0.75rem; color: var(--gray); letter-spacing: 1px;
         }
         footer a { color: var(--ink); font-weight: 700; }
@@ -126,22 +120,15 @@
 <body>
 
     <header>
-        <img src="logo.jpg" alt="Logo Arcos Lab" class="logo-img">
+        <img src="logo.jpg" alt="Arcos Lab Logo" class="logo-img">
         
         <h1>ARCOS LAB</h1>
-        <h2>Edição de Vídeo</h2>
+        <h2>Video Editing</h2>
     </header>
 
-    <div class="portfolio">
-        <div class="video-wrapper">
-            <div class="video-container">
-                <iframe 
-                    src="https://www.youtube-nocookie.com/embed/eYI5FP4VTAs?controls=1&rel=0" 
-                    title="YouTube video player" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    allowfullscreen>
-                </iframe>
-            </div>
+    <div class="construction-area">
+        <div class="huge-text">
+            Portfolio<br>Under<br>Construction
         </div>
     </div>
 
