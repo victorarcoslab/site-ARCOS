@@ -12,9 +12,9 @@
     <style>
         /* --- DESIGN SYSTEM --- */
         :root {
-            --bg: #ffffff;      
-            --ink: #000000;     
-            --gray: #666666;    
+            --bg: #ffffff;      /* White Background */
+            --ink: #000000;     /* Pure Black Text */
+            --gray: #666666;    /* Gray Accents */
         }
 
         * { box-sizing: border-box; }
@@ -70,9 +70,9 @@
             text-transform: uppercase;
         }
 
-        /* --- CONSTRUCTION MESSAGE --- */
+        /* --- CONSTRUCTION AREA --- */
         .construction-area {
-            flex: 1; /* Pushes footer down */
+            flex: 1; /* Pushes footer to bottom */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -83,18 +83,16 @@
         }
 
         .huge-text {
-            font-size: clamp(2.5rem, 8vw, 6rem); /* HUGE size */
+            font-size: clamp(2.5rem, 8vw, 6rem); /* Responsive Huge Text */
             font-weight: 900;
             text-align: center;
             line-height: 1;
-            color: #e0e0e0; /* Very light gray for aesthetic background feel */
             text-transform: uppercase;
             letter-spacing: -2px;
-            /* Optional: Change color to var(--ink) if you want it black and bold */
             color: var(--ink); 
         }
 
-        /* --- WHATSAPP --- */
+        /* --- WHATSAPP BUTTON --- */
         .whatsapp-btn {
             position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px;
             background: var(--ink); border-radius: 50%;
@@ -111,8 +109,10 @@
             padding: 40px; text-align: center;
             font-size: 0.75rem; color: var(--gray); letter-spacing: 1px;
         }
-        footer a { color: var(--ink); font-weight: 700; }
+        footer a { color: var(--ink); font-weight: 700; text-decoration: none; }
+        footer a:hover { opacity: 0.7; }
 
+        /* ANIMATIONS */
         @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeIn { to { opacity: 1; } }
     </style>
