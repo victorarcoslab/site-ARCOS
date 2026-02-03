@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>ARCOS LAB</title>
-    
     <link rel="icon" href="vapor.png" type="image/png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,131 +14,64 @@
     <style>
         /* --- DESIGN SYSTEM VAPORWAVE --- */
         :root {
-            --bg-dark: #0a0a2a;
-            --bg-light: #2a0a4a;
-            --neon-pink: #ff00ff;
-            --neon-cyan: #00ffff;
-            --text: #ffffff;
+            --bg-dark: #0a0a2a; --bg-light: #2a0a4a;
+            --neon-pink: #ff00ff; --neon-cyan: #00ffff; --text: #ffffff;
             --insta-grad: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
         }
-
         * { box-sizing: border-box; }
-
         body { 
-            margin: 0;
-            background-color: var(--bg-dark);
-            color: var(--text); 
-            font-family: 'Montserrat', sans-serif; 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            overflow-x: hidden;
+            margin: 0; background-color: var(--bg-dark); color: var(--text); 
+            font-family: 'Montserrat', sans-serif; display: flex; flex-direction: column;
+            align-items: center; min-height: 100vh; overflow-x: hidden;
         }
 
         /* --- FUNDO ANIMADO --- */
-        body::before {
-            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, var(--bg-dark), var(--bg-light));
-            z-index: -2;
-        }
-        body::after {
-            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 200%;
-            background-image: 
-                linear-gradient(rgba(255, 0, 255, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: moveGrid 10s linear infinite;
-            z-index: -1; pointer-events: none;
-        }
+        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, var(--bg-dark), var(--bg-light)); z-index: -2; }
+        body::after { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 200%; background-image: linear-gradient(rgba(255, 0, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px); background-size: 50px 50px; animation: moveGrid 10s linear infinite; z-index: -1; pointer-events: none; }
         @keyframes moveGrid { from { transform: translateY(0); } to { transform: translateY(-50%); } }
 
         /* --- HEADER --- */
-        header {
-            width: 100%; padding: 60px 20px 30px;
-            display: flex; flex-direction: column; align-items: center; text-align: center;
-        }
-
-        .logo-img {
-            width: 150px; height: auto; margin-bottom: 20px; border-radius: 50%;
-            box-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-cyan);
-            transition: transform 0.3s;
-        }
+        header { width: 100%; padding: 60px 20px 30px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .logo-img { width: 150px; height: auto; margin-bottom: 20px; border-radius: 50%; box-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-cyan); transition: transform 0.3s; }
         .logo-img:hover { transform: scale(1.05) rotate(5deg); }
+        h1 { font-family: 'Orbitron', sans-serif; font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 900; margin: 0; line-height: 1; text-transform: uppercase; color: var(--neon-cyan); text-shadow: 2px 2px 0px var(--neon-pink); }
+        h2 { font-size: clamp(0.9rem, 3vw, 1.1rem); font-weight: 700; letter-spacing: 3px; margin-top: 10px; color: var(--neon-pink); text-transform: uppercase; }
 
-        h1 {
-            font-family: 'Orbitron', sans-serif; font-size: clamp(2rem, 6vw, 3.5rem);
-            font-weight: 900; margin: 0; line-height: 1; text-transform: uppercase;
-            color: var(--neon-cyan); text-shadow: 2px 2px 0px var(--neon-pink);
-        }
-        h2 {
-            font-size: clamp(0.9rem, 3vw, 1.1rem); font-weight: 700; letter-spacing: 3px;
-            margin-top: 10px; color: var(--neon-pink); text-transform: uppercase;
-        }
-
-        /* --- VÍDEO (CORREÇÃO DE ALTURA) --- */
-        .portfolio {
-            width: 100%; max-width: 1200px; padding: 20px 20px 60px;
-            display: flex; flex-direction: column; align-items: center;
-        }
-
+        /* --- VÍDEO (CORREÇÃO INFALÍVEL) --- */
+        .portfolio { width: 100%; max-width: 1200px; padding: 20px 20px 60px; display: flex; flex-direction: column; align-items: center; }
+        
+        /* O contêiner que segura o espaço */
         .video-wrapper {
-            width: 100%;
-            max-width: 340px; /* Largura de celular */
-            aspect-ratio: 9 / 16; /* Força o formato vertical do Shorts */
-            border-radius: 15px; 
-            overflow: hidden; 
-            background: #000;
+            width: 100%; max-width: 340px; /* Largura de celular */
+            position: relative; /* Necessário para o truque */
+            padding-bottom: 177.77%; /* Força a altura (16/9 * 100) */
+            height: 0;
+            border-radius: 15px; overflow: hidden; background: #000;
             border: 2px solid var(--neon-cyan);
             box-shadow: 0 0 15px var(--neon-cyan), 0 0 30px var(--neon-pink);
             margin-bottom: 20px;
         }
-
+        /* O iframe se estica para preencher o contêiner */
         .video-wrapper iframe {
-            width: 100%; height: 100%; border: 0; display: block;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
         }
 
-        /* --- BOTÃO CENTRAL (FALADRETTI) --- */
-        .btn-main {
-            padding: 12px 30px; border-radius: 50px;
-            background: var(--insta-grad); color: white; text-decoration: none;
-            font-weight: 700; font-size: 0.9rem; display: flex; align-items: center;
-            border: 2px solid rgba(255,255,255,0.3);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: transform 0.2s;
-        }
+        /* --- BOTÃO CENTRAL --- */
+        .btn-main { padding: 12px 30px; border-radius: 50px; background: var(--insta-grad); color: white; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; border: 2px solid rgba(255,255,255,0.3); box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: transform 0.2s; }
         .btn-main:hover { transform: scale(1.05); border-color: white; }
-        
         .btn-icon { width: 20px; height: 20px; fill: white; margin-right: 10px; }
 
-        /* --- BOTÕES FLUTUANTES (DIREITA) --- */
-        .floating-container {
-            position: fixed; bottom: 30px; right: 30px;
-            display: flex; flex-direction: column; gap: 15px;
-            z-index: 999;
-        }
-
-        .float-btn {
-            width: 55px; height: 55px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            border: 2px solid rgba(255,255,255,0.8);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            transition: transform 0.3s;
-            cursor: pointer;
-        }
+        /* --- BOTÕES FLUTUANTES --- */
+        .floating-container { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 999; }
+        .float-btn { width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid rgba(255,255,255,0.8); box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: transform 0.3s; cursor: pointer; }
         .float-btn:hover { transform: scale(1.1); }
         .float-icon { width: 28px; height: 28px; fill: white; }
-
-        /* Cores Específicas */
         .btn-x { background: #000; box-shadow: 0 0 15px rgba(255,255,255,0.2); }
         .btn-insta { background: var(--insta-grad); box-shadow: 0 0 15px rgba(255,0,255,0.4); }
         .btn-whats { background: #25D366; box-shadow: 0 0 15px rgba(37,211,102,0.4); border-color: white; }
 
         /* --- FOOTER --- */
-        footer {
-            margin-top: auto; padding: 40px; text-align: center;
-            font-size: 0.8rem; color: rgba(255,255,255,0.6); letter-spacing: 1px;
-            border-top: 1px solid rgba(255,0,255,0.3); width: 100%; background: rgba(0,0,0,0.3);
-        }
+        footer { margin-top: auto; padding: 40px; text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.6); letter-spacing: 1px; border-top: 1px solid rgba(255,0,255,0.3); width: 100%; background: rgba(0,0,0,0.3); }
         footer a { color: var(--neon-cyan); font-weight: 700; text-decoration: none; }
     </style>
 </head>
@@ -162,36 +94,18 @@
         </div>
 
         <a href="https://www.instagram.com/faladretti/" target="_blank" class="btn-main">
-            <svg class="btn-icon" viewBox="0 0 24 24">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-            </svg>
+            <svg class="btn-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             @faladretti
         </a>
     </div>
 
     <div class="floating-container">
-        <a href="https://x.com/arcoslab_" target="_blank" class="float-btn btn-x" aria-label="X">
-            <svg class="float-icon" viewBox="0 0 24 24">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-            </svg>
-        </a>
-        
-        <a href="https://www.instagram.com/arcoslab_/" target="_blank" class="float-btn btn-insta" aria-label="Instagram">
-            <svg class="float-icon" viewBox="0 0 24 24">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-            </svg>
-        </a>
-        
-        <a href="https://wa.me/5511976347250" target="_blank" class="float-btn btn-whats" aria-label="WhatsApp">
-            <svg class="float-icon" viewBox="0 0 24 24">
-                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487 2.982 1.288 2.982.858 3.526.801.544-.058 1.733-.708 1.98-1.392.248-.684.248-1.27.174-1.392z"/>
-            </svg>
-        </a>
+        <a href="https://x.com/arcoslab_" target="_blank" class="float-btn btn-x" aria-label="X"><svg class="float-icon" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="https://www.instagram.com/arcoslab_/" target="_blank" class="float-btn btn-insta" aria-label="Instagram"><svg class="float-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+        <a href="https://wa.me/5511976347250" target="_blank" class="float-btn btn-whats" aria-label="WhatsApp"><svg class="float-icon" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487 2.982 1.288 2.982.858 3.526.801.544-.058 1.733-.708 1.98-1.392.248-.684.248-1.27.174-1.392z"/></svg></a>
     </div>
 
-    <footer>
-        <p><a href="mailto:victor@arcoslab.com">victor@arcoslab.com</a></p>
-    </footer>
+    <footer><p><a href="mailto:victor@arcoslab.com">victor@arcoslab.com</a></p></footer>
 
 </body>
 </html>
