@@ -1,134 +1,195 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARCOS LAB | Video Editing</title>
+    <title>ARCOS LAB | Vaporwave Edit</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 
     <style>
-        /* --- DESIGN SYSTEM --- */
+        /* --- VAPORWAVE DESIGN SYSTEM --- */
         :root {
-            --bg: #ffffff;      /* White Background */
-            --ink: #000000;     /* Pure Black Text */
-            --gray: #666666;    /* Gray Accents */
+            --bg-dark: #0d0221;   /* Roxo Profundo */
+            --bg-light: #261447;  /* Roxo Médio */
+            --neon-pink: #ff00ff; /* Rosa Choque */
+            --neon-cyan: #00ffff; /* Ciano Elétrico */
+            --text: #ffffff;
         }
 
         * { box-sizing: border-box; }
 
         body { 
             margin: 0; 
-            background-color: var(--bg); 
-            color: var(--ink); 
+            /* Gradiente Retrô */
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-light) 100%);
+            color: var(--text); 
             font-family: 'Montserrat', sans-serif; 
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        /* --- HEADER --- */
+        /* Efeito de Grade no fundo (Grid) */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 0, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* --- CABEÇALHO --- */
         header {
             width: 100%;
-            padding: 60px 20px 20px;
+            padding: 60px 20px 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            animation: slideDown 0.8s ease-out forwards;
+            animation: slideDown 1s ease-out forwards;
         }
 
-        /* LOGO */
+        /* LOGO NOVA (PNG) */
         .logo-img {
-            width: 120px;       
+            width: 160px;       
             height: auto;
             margin-bottom: 20px; 
-            display: block;
-            mix-blend-mode: multiply; 
+            border-radius: 50%; 
+            box-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-cyan); /* Brilho Neon */
+            transition: transform 0.3s;
         }
+        .logo-img:hover { transform: scale(1.05) rotate(2deg); }
 
-        /* TITLE */
+        /* TÍTULO GLITCH / NEON */
         h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 900;   
-            letter-spacing: -1px;
+            font-family: 'Orbitron', sans-serif; /* Fonte Sci-Fi */
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
             margin: 0;
             line-height: 1;
             text-transform: uppercase;
+            color: var(--neon-cyan);
+            text-shadow: 3px 3px 0px var(--neon-pink); /* Sombra dura retrô */
+            letter-spacing: 2px;
         }
 
-        /* SUBTITLE */
+        /* SUBTÍTULO */
         h2 {
-            font-size: clamp(0.8rem, 2vw, 1rem);
-            font-weight: 500;
+            font-size: clamp(0.9rem, 3vw, 1.2rem);
+            font-weight: 700;
             letter-spacing: 4px; 
-            margin-top: 10px;
-            color: var(--gray);
+            margin-top: 15px;
+            color: var(--neon-pink);
             text-transform: uppercase;
+            text-shadow: 0 0 5px var(--neon-pink);
         }
 
-        /* --- CONSTRUCTION AREA --- */
-        .construction-area {
-            flex: 1; /* Pushes footer to bottom */
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* --- ÁREA DO VÍDEO --- */
+        .portfolio {
             width: 100%;
-            padding: 40px 20px;
+            max-width: 1200px;
+            padding: 40px 20px 80px;
+            display: flex;
+            justify-content: center;
             opacity: 0;
             animation: fadeIn 1s 0.5s forwards;
         }
 
-        .huge-text {
-            font-size: clamp(2.5rem, 8vw, 6rem); /* Responsive Huge Text */
-            font-weight: 900;
-            text-align: center;
-            line-height: 1;
-            text-transform: uppercase;
-            letter-spacing: -2px;
-            color: var(--ink); 
+        .video-wrapper {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #000;
+            /* Borda Neon Dupla */
+            border: 2px solid var(--neon-cyan);
+            box-shadow: 0 0 15px var(--neon-cyan), 0 0 30px var(--neon-pink);
+            transition: transform 0.3s;
+        }
+        .video-wrapper:hover { transform: scale(1.02); }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 177.77%; 
+            height: 0;
         }
 
-        /* --- WHATSAPP BUTTON --- */
+        .video-container iframe {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
+        }
+        
+        /* Título do Projeto */
+        .project-title {
+            text-align: center;
+            margin-top: 20px;
+            font-family: 'Orbitron', sans-serif;
+            color: #fff;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            opacity: 0.8;
+        }
+
+        /* --- WHATSAPP (Estilo Cyberpunk) --- */
         .whatsapp-btn {
-            position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px;
-            background: var(--ink); border-radius: 50%;
+            position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px;
+            background: linear-gradient(45deg, var(--neon-pink), var(--neon-cyan));
+            border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.6);
             transition: transform 0.3s ease;
             z-index: 100;
+            border: 2px solid #fff;
         }
-        .whatsapp-btn:hover { transform: scale(1.1); }
-        .whatsapp-icon { width: 24px; height: 24px; fill: white; }
+        .whatsapp-btn:hover { transform: scale(1.1) rotate(180deg); }
+        .whatsapp-icon { width: 30px; height: 30px; fill: white; }
 
         /* --- FOOTER --- */
         footer {
-            padding: 40px; text-align: center;
-            font-size: 0.75rem; color: var(--gray); letter-spacing: 1px;
+            margin-top: auto; padding: 40px; text-align: center;
+            font-size: 0.8rem; color: rgba(255,255,255,0.6); letter-spacing: 1px;
+            border-top: 1px solid rgba(255,0,255,0.3);
+            width: 100%;
+            background: rgba(0,0,0,0.3);
         }
-        footer a { color: var(--ink); font-weight: 700; text-decoration: none; }
-        footer a:hover { opacity: 0.7; }
+        footer a { color: var(--neon-cyan); font-weight: 700; text-decoration: none; }
+        footer a:hover { color: var(--neon-pink); text-shadow: 0 0 10px var(--neon-pink); }
 
-        /* ANIMATIONS */
-        @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        /* ANIMAÇÕES */
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeIn { to { opacity: 1; } }
     </style>
 </head>
 <body>
 
     <header>
-        <img src="logo.jpg" alt="Arcos Lab Logo" class="logo-img">
+        <img src="vapor.png" alt="Arcos Lab Vaporwave Logo" class="logo-img">
         
         <h1>ARCOS LAB</h1>
-        <h2>Video Editing</h2>
+        <h2>Edição de Vídeo</h2>
     </header>
 
-    <div class="construction-area">
-        <div class="huge-text">
-            Portfolio<br>Under<br>Construction
+    <div class="portfolio">
+        <div class="video-item-wrapper">
+            <div class="video-wrapper">
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube-nocookie.com/embed/eYI5FP4VTAs?controls=1&rel=0" 
+                        title="YouTube video player" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+            <div class="project-title">/// SHORTS_EDIT_V1</div>
         </div>
     </div>
 
