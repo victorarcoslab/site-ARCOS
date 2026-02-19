@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
+<html lang="en"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ARCOS LAB</title>
@@ -13,119 +12,97 @@
     <style>
         /* --- CONFIGURAÇÕES GERAIS --- */
         :root {
-            --bg-dark: #0a0a2a; 
-            --bg-light: #2a0a4a;
-            --neon-pink: #ff00ff; 
-            --neon-cyan: #00ffff; 
-            --text: #ffffff;
+            --bg-dark: #0a0a2a; --bg-light: #2a0a4a;
+            --neon-pink: #ff00ff; --neon-cyan: #00ffff; --text: #ffffff;
         }
         * { box-sizing: border-box; }
         
         body { 
-            margin: 0; 
-            background-color: var(--bg-dark); 
-            color: var(--text); 
+            margin: 0; background-color: var(--bg-dark); color: var(--text); 
             font-family: 'Montserrat', sans-serif; 
-            display: flex; 
-            flex-direction: column;
-            align-items: center; 
-            min-height: 100vh;
-            position: relative; /* Necessário para as camadas funcionarem */
+            display: flex; flex-direction: column; align-items: center; 
+            min-height: 100vh; position: relative;
         }
 
-        /* --- FUNDO ANIMADO (CAMADA DE TRÁS) --- */
+        /* --- CAMADAS DE FUNDO --- */
         .background-layer {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(to bottom, var(--bg-dark), var(--bg-light));
-            z-index: -2; /* Joga bem para trás */
+            z-index: -2;
         }
-        
         .grid-layer {
             position: fixed; top: 0; left: 0; width: 100%; height: 200%;
             background-image: linear-gradient(rgba(255, 0, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: moveGrid 10s linear infinite;
-            z-index: -1; /* Fica na frente do fundo roxo, mas atrás do texto */
-            pointer-events: none;
+            background-size: 50px 50px; animation: moveGrid 10s linear infinite;
+            z-index: -1; pointer-events: none;
         }
         @keyframes moveGrid { from { transform: translateY(0); } to { transform: translateY(-50%); } }
 
-        /* --- CONTEÚDO (CAMADA DA FRENTE) --- */
+        /* --- CAMADA DE CONTEÚDO PRINCIPAL --- */
         .content-layer {
-            position: relative; 
-            z-index: 10; /* Garante que fique NA FRENTE de tudo */
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            flex-grow: 1; /* Ocupa o espaço todo */
+            position: relative; z-index: 10; width: 100%;
+            display: flex; flex-direction: column; align-items: center;
+            flex-grow: 1;
         }
 
         /* --- CABEÇALHO --- */
         header { 
-            width: 100%; 
-            padding: 50px 20px 30px; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            text-align: center;
+            width: 100%; padding: 50px 20px 30px; 
+            display: flex; flex-direction: column; align-items: center; text-align: center;
         }
-        
         .logo-img { 
             width: 150px; height: auto; margin-bottom: 20px; border-radius: 50%; 
-            box-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-cyan); 
-            background: #000; /* Fundo preto pra garantir que a logo apareça */
+            box-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-cyan); background: #000;
         }
-        
         h1 { 
-            font-family: 'Orbitron', sans-serif; 
-            font-size: clamp(2rem, 6vw, 3.5rem); 
-            font-weight: 900; margin: 0; line-height: 1; 
-            text-transform: uppercase; 
-            color: var(--neon-cyan); 
-            text-shadow: 3px 3px 0px var(--neon-pink); 
+            font-family: 'Orbitron', sans-serif; font-size: clamp(2rem, 6vw, 3.5rem); 
+            font-weight: 900; margin: 0; line-height: 1; text-transform: uppercase; 
+            color: var(--neon-cyan); text-shadow: 3px 3px 0px var(--neon-pink); 
         }
-        
         h2 { 
-            font-size: clamp(0.9rem, 3vw, 1.1rem); 
-            font-weight: 700; letter-spacing: 3px; 
-            margin-top: 15px; color: var(--neon-pink); 
-            text-transform: uppercase; 
-            background: rgba(0,0,0,0.3); /* Fundo leve para leitura */
-            padding: 5px 10px;
-            border-radius: 5px;
+            font-size: clamp(0.9rem, 3vw, 1.1rem); font-weight: 700; letter-spacing: 3px; 
+            margin-top: 15px; color: var(--neon-pink); text-transform: uppercase; 
+            background: rgba(0,0,0,0.3); padding: 5px 10px; border-radius: 5px;
         }
 
-        /* --- ÁREA DO VÍDEO --- */
-        .video-box {
-            width: 100%; 
-            max-width: 340px; /* Largura Celular */
-            margin: 20px 0 40px;
-            border-radius: 15px; 
-            overflow: hidden; 
-            background: #000;
+        /* --- GRID DE VÍDEOS (2 Colunas) --- */
+        .portfolio-grid {
+            width: 100%; max-width: 1100px;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Duas colunas iguais */
+            gap: 30px; /* Espaço entre os vídeos */
+            margin-bottom: 40px;
+        }
+
+        /* No celular, vira 1 coluna */
+        @media (max-width: 768px) {
+            .portfolio-grid { grid-template-columns: 1fr; }
+        }
+
+        /* --- CAIXA DO VÍDEO HORIZONTAL --- */
+        .video-box-horizontal {
+            width: 100%;
+            border-radius: 15px; overflow: hidden; background: #000;
             border: 2px solid var(--neon-cyan);
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
             position: relative;
+            transition: transform 0.3s;
         }
+        .video-box-horizontal:hover { transform: scale(1.02); }
         
-        /* Proporção Vertical 9:16 */
-        .video-ratio {
-            width: 100%;
-            padding-bottom: 177.77%;
-            position: relative;
+        /* Proporção Horizontal 16:9 */
+        .video-ratio-16-9 {
+            width: 100%; padding-bottom: 56.25%; position: relative;
         }
-        
-        .video-ratio iframe {
+        .video-ratio-16-9 iframe {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
         }
 
         /* --- RODAPÉ --- */
         footer { 
-            padding: 40px; text-align: center; 
-            font-size: 0.9rem; margin-top: auto;
-            border-top: 1px solid rgba(255,0,255,0.3); 
-            width: 100%; background: rgba(0,0,0,0.5); 
+            padding: 40px; text-align: center; font-size: 0.9rem; margin-top: auto;
+            border-top: 1px solid rgba(255,0,255,0.3); width: 100%; background: rgba(0,0,0,0.5); 
         }
         footer a { color: var(--neon-cyan); font-weight: 700; text-decoration: none; }
     </style>
@@ -138,20 +115,37 @@
     <div class="content-layer">
         
         <header>
-            <img src="vapor.png" alt="Logo Arcos Lab" class="logo-img">
+            <img src="vapor.png" alt="Arcos Lab Logo" class="logo-img">
             <h1>ARCOS LAB</h1>
-            <h2>Editor de Vídeo | @victorarcoslab</h2>
+            <h2>Video Editor | @victorarcoslab</h2>
         </header>
 
-        <div class="video-box">
-            <div class="video-ratio">
-                <iframe 
-                    src="https://www.youtube.com/embed/eYI5FP4VTAs?autoplay=1&mute=1&controls=1&rel=0" 
-                    title="Portfolio Arcos Lab" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
+        <div class="portfolio-grid">
+            
+            <div class="video-box-horizontal">
+                <div class="video-ratio-16-9">
+                    <iframe 
+                        src="https://www.youtube.com/embed/LtBRRV2Lchc?controls=1&rel=0" 
+                        title="Portfolio Video 1" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen
+                        referrerpolicy="strict-origin-when-cross-origin">
+                    </iframe>
+                </div>
             </div>
+
+            <div class="video-box-horizontal">
+                <div class="video-ratio-16-9">
+                    <iframe 
+                        src="https://www.youtube.com/embed/t5tnKlO3peo?controls=1&rel=0" 
+                        title="Portfolio Video 2" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen
+                        referrerpolicy="strict-origin-when-cross-origin">
+                    </iframe>
+                </div>
+            </div>
+
         </div>
 
         <footer>
