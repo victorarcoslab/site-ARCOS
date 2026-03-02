@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en"> <head>
+<html lang="pt-BR">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARCOS LAB</title>
+    <title>ARCOS LAB | Editor de Vídeo</title>
     <link rel="icon" href="vapor.png" type="image/png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,7 +25,7 @@
             min-height: 100vh; position: relative;
         }
 
-        /* --- CAMADAS DE FUNDO --- */
+        /* --- FUNDO VAPORWAVE --- */
         .background-layer {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(to bottom, var(--bg-dark), var(--bg-light));
@@ -38,11 +39,10 @@
         }
         @keyframes moveGrid { from { transform: translateY(0); } to { transform: translateY(-50%); } }
 
-        /* --- CAMADA DE CONTEÚDO PRINCIPAL --- */
+        /* --- CONTEÚDO PRINCIPAL --- */
         .content-layer {
-            position: relative; z-index: 10; width: 100%;
-            display: flex; flex-direction: column; align-items: center;
-            flex-grow: 1;
+            position: relative; z-index: 10; width: 100%; max-width: 1200px;
+            display: flex; flex-direction: column; align-items: center; flex-grow: 1;
         }
 
         /* --- CABEÇALHO --- */
@@ -65,39 +65,56 @@
             background: rgba(0,0,0,0.3); padding: 5px 10px; border-radius: 5px;
         }
 
-        /* --- GRID DE VÍDEOS (2 Colunas) --- */
+        /* --- GRID DE VÍDEOS --- */
         .portfolio-grid {
-            width: 100%; max-width: 1100px;
-            padding: 20px;
-            display: grid;
-            grid-template-columns: 1fr 1fr; /* Duas colunas iguais */
-            gap: 30px; /* Espaço entre os vídeos */
+            width: 100%; padding: 20px;
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;
             margin-bottom: 40px;
         }
 
-        /* No celular, vira 1 coluna */
-        @media (max-width: 768px) {
-            .portfolio-grid { grid-template-columns: 1fr; }
-        }
-
-        /* --- CAIXA DO VÍDEO HORIZONTAL --- */
-        .video-box-horizontal {
-            width: 100%;
+        /* Caixa de Vídeo (Estilo Padrão) */
+        .video-box {
             border-radius: 15px; overflow: hidden; background: #000;
             border: 2px solid var(--neon-cyan);
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
-            position: relative;
+            position: relative; transition: transform 0.3s;
+        }
+        .video-box:hover { transform: scale(1.02); border-color: var(--neon-pink); box-shadow: 0 0 20px rgba(255, 0, 255, 0.5); }
+        .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+        /* Ajustes de Tamanho: Horizontal x Vertical */
+        .box-horizontal { width: 100%; max-width: 480px; }
+        .ratio-horizontal { width: 100%; padding-bottom: 56.25%; position: relative; } /* 16:9 */
+
+        .box-vertical { width: 100%; max-width: 300px; }
+        .ratio-vertical { width: 100%; padding-bottom: 177.77%; position: relative; } /* 9:16 */
+
+        /* --- CRIADORES SECTION --- */
+        .creators-section {
+            width: 100%; display: flex; flex-direction: column; align-items: center;
+            padding: 20px; margin-bottom: 60px;
+        }
+        .creators-title {
+            font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: var(--neon-cyan);
+            text-transform: uppercase; letter-spacing: 2px; margin-bottom: 40px;
+            text-shadow: 2px 2px 0px var(--neon-pink); text-align: center;
+        }
+        .creators-list {
+            display: flex; gap: 50px; justify-content: center; flex-wrap: wrap;
+        }
+        .creator-card {
+            display: flex; flex-direction: column; align-items: center; text-decoration: none;
             transition: transform 0.3s;
         }
-        .video-box-horizontal:hover { transform: scale(1.02); }
+        .creator-card:hover { transform: translateY(-10px) scale(1.05); }
         
-        /* Proporção Horizontal 16:9 */
-        .video-ratio-16-9 {
-            width: 100%; padding-bottom: 56.25%; position: relative;
+        .creator-img {
+            width: 120px; height: 120px; border-radius: 50%; object-fit: cover;
+            border: 3px solid var(--neon-pink); box-shadow: 0 0 15px var(--neon-pink);
+            margin-bottom: 15px; background: #000;
         }
-        .video-ratio-16-9 iframe {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
-        }
+        .creator-name { color: var(--text); font-weight: 900; font-size: 1.1rem; margin: 0 0 5px 0; }
+        .creator-followers { color: var(--neon-cyan); font-weight: 700; font-size: 0.9rem; margin: 0; }
 
         /* --- RODAPÉ --- */
         footer { 
@@ -117,35 +134,53 @@
         <header>
             <img src="vapor.png" alt="Arcos Lab Logo" class="logo-img">
             <h1>ARCOS LAB</h1>
-            <h2>Video Editor | @victorarcoslab</h2>
+            <h2>Editor de Vídeo | @victorarcoslab</h2>
         </header>
 
         <div class="portfolio-grid">
             
-            <div class="video-box-horizontal">
-                <div class="video-ratio-16-9">
-                    <iframe 
-                        src="https://www.youtube.com/embed/LtBRRV2Lchc?controls=1&rel=0" 
-                        title="Portfolio Video 1" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen
-                        referrerpolicy="strict-origin-when-cross-origin">
-                    </iframe>
+            <div class="video-box box-horizontal">
+                <div class="ratio-horizontal">
+                    <iframe src="https://www.youtube.com/embed/t5tnKlO3peo?controls=1&rel=0" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
             </div>
 
-            <div class="video-box-horizontal">
-                <div class="video-ratio-16-9">
-                    <iframe 
-                        src="https://www.youtube.com/embed/t5tnKlO3peo?controls=1&rel=0" 
-                        title="Portfolio Video 2" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen
-                        referrerpolicy="strict-origin-when-cross-origin">
-                    </iframe>
+            <div class="video-box box-horizontal">
+                <div class="ratio-horizontal">
+                    <iframe src="https://drive.google.com/file/d/1g4UK_FFU7OhUUKi5LrRM0VYmPqKrFPph/preview" allow="autoplay" allowfullscreen></iframe>
                 </div>
             </div>
 
+            <div class="video-box box-vertical">
+                <div class="ratio-vertical">
+                    <iframe src="https://www.youtube.com/embed/eYI5FP4VTAs?controls=1&rel=0" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+            </div>
+
+            <div class="video-box box-vertical">
+                <div class="ratio-vertical">
+                    <iframe src="https://www.youtube.com/embed/9uolAOcCOhM?controls=1&rel=0" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="creators-section">
+            <div class="creators-title">CRIADORES COM QUEM JÁ TRABALHEI</div>
+            
+            <div class="creators-list">
+                <a href="https://www.instagram.com/faladretti/" target="_blank" class="creator-card">
+                    <img src="fala.jpg" alt="@faladretti" class="creator-img">
+                    <p class="creator-name">@faladretti</p>
+                    <p class="creator-followers">14 Mil Seguidores</p>
+                </a>
+
+                <a href="https://www.instagram.com/thiagosemt/" target="_blank" class="creator-card">
+                    <img src="thiago.jpg" alt="@thiagosemt" class="creator-img">
+                    <p class="creator-name">@thiagosemt</p>
+                    <p class="creator-followers">2,2 Milhões de Seguidores</p>
+                </a>
+            </div>
         </div>
 
         <footer>
