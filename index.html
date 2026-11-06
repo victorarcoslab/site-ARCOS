@@ -10,27 +10,134 @@
 
     <style>
         * { box-sizing: border-box; }
-        body { margin: 0; background-color: #ffffff; color: #1a1a1a; font-family: 'Montserrat', sans-serif; display: flex; flex-direction: column; align-items: center; min-height: 100vh; -webkit-font-smoothing: antialiased; }
-        .content-wrapper { width: 100%; max-width: 1200px; padding: 0 20px; display: flex; flex-direction: column; flex-grow: 1; }
         
-        header { width: 100%; padding: 80px 0 60px; text-align: center; }
-        h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 600; margin: 0; letter-spacing: 2px; }
-        h2 { font-size: clamp(0.9rem, 2vw, 1rem); font-weight: 300; letter-spacing: 4px; margin-top: 15px; color: #666666; text-transform: uppercase; }
+        body { 
+            margin: 0; 
+            background-color: #ffffff; 
+            color: #1a1a1a; 
+            font-family: 'Montserrat', sans-serif; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            min-height: 100vh; 
+            -webkit-font-smoothing: antialiased;
+            /* Animação suave ao abrir a página */
+            animation: pageFadeIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
 
-        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; width: 100%; margin-bottom: 80px; }
-        
-        .project-link { text-decoration: none; color: #1a1a1a; transition: opacity 0.3s ease; }
-        .project-link:hover { opacity: 0.8; }
-        
-        .image-box { width: 100%; overflow: hidden; background: #f4f4f4; aspect-ratio: 4 / 3; }
-        .image-box img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
-        .project-link:hover .image-box img { transform: scale(1.03); }
-        
-        .project-title { margin-top: 15px; font-weight: 600; font-size: 1.1rem; text-align: center; text-transform: uppercase; letter-spacing: 1px; }
+        @keyframes pageFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-        footer { padding: 40px 0; text-align: center; font-size: 0.9rem; margin-top: auto; width: 100%; }
-        footer a { color: #1a1a1a; font-weight: 400; text-decoration: none; transition: color 0.3s; }
-        footer a:hover { color: #666666; }
+        .content-wrapper { 
+            width: 100%; 
+            max-width: 1200px; 
+            padding: 0 20px; 
+            display: flex; 
+            flex-direction: column; 
+            flex-grow: 1; 
+        }
+        
+        header { 
+            width: 100%; 
+            padding: 80px 0 60px; 
+            text-align: center; 
+        }
+
+        h1 { 
+            font-size: clamp(2rem, 5vw, 3rem); 
+            font-weight: 600; 
+            margin: 0; 
+            letter-spacing: 2px; 
+        }
+
+        h2 { 
+            font-size: clamp(0.9rem, 2vw, 1rem); 
+            font-weight: 300; 
+            letter-spacing: 4px; 
+            margin-top: 15px; 
+            color: #666666; 
+            text-transform: uppercase; 
+        }
+
+        .portfolio-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+            gap: 40px; 
+            width: 100%; 
+            margin-bottom: 80px; 
+        }
+        
+        .project-link { 
+            text-decoration: none; 
+            color: #1a1a1a; 
+            display: block;
+            transition: opacity 0.3s ease; 
+        }
+
+        .project-link:active {
+            transform: scale(0.98);
+        }
+        
+        .image-box { 
+            width: 100%; 
+            overflow: hidden; 
+            background: #f4f4f4; 
+            aspect-ratio: 4 / 3; 
+        }
+
+        .image-box img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            display: block; 
+            transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.3s ease; 
+        }
+
+        .project-link:hover .image-box img { 
+            transform: scale(1.04); 
+            filter: brightness(0.95);
+        }
+        
+        .project-title { 
+            margin-top: 15px; 
+            font-weight: 600; 
+            font-size: 1.1rem; 
+            text-align: center; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover .project-title {
+            color: #666666;
+        }
+
+        footer { 
+            padding: 40px 0; 
+            text-align: center; 
+            font-size: 0.9rem; 
+            margin-top: auto; 
+            width: 100%; 
+        }
+
+        footer a { 
+            color: #1a1a1a; 
+            font-weight: 400; 
+            text-decoration: none; 
+            transition: color 0.3s; 
+        }
+
+        footer a:hover { 
+            color: #666666; 
+        }
     </style>
 </head>
 <body>
@@ -80,12 +187,3 @@
 
 </body>
 </html>
-/* Animação suave de entrada da página */
-        body {
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; transform: translateY(15px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
